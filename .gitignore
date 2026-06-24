@@ -1,0 +1,55 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+.env
+.env.*
+.venv/
+venv/
+env/
+
+# Logs
+logs/
+*.log
+
+# Data
+data/
+data_raw/
+data_intermediate/
+data_processed/
+*.csv
+*.parquet
+*.zip
+*.7z
+*.gz
+
+# Model artifacts
+models/
+checkpoints/
+*.joblib
+*.pkl
+*.h5
+
+# Outputs
+artifacts/
+notebooks/artifacts/
+reports/
+results/
+figures/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS trash
+.DS_Store
+Thumbs.db
+*.lnk
+
+# IDE
+.idea/
+.vscode/
+*.iml
