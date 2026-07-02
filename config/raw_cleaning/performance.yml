@@ -1,0 +1,185 @@
+input_path: "Data/raw sample/Elier_data_2026-04-30.csv"
+output_path: "Data/processed/performance_clean.csv"
+loader: performance
+
+standardize_columns: true
+lower_case_columns: true
+lower_case: true
+verbose: true
+
+logging:
+  enabled: true
+  dir: "Data/processed/logs/raw_cleaning"
+  keep_last: 4
+
+date_format: "%Y-%m-%d"
+
+date_filter:
+  enabled: true
+  column: "Beginning Month Date"
+  min_date: "2022-01-01"
+
+include_values_filter:
+  enabled: false
+  column: "Ref Num Country"
+  case_sensitive: false
+  values:
+    - USA
+    - Canada
+
+rename_map:
+  "Beginning Month Date": yearmonth
+  "Friendly Game Name": game_name
+  "Product": slot_cabinet_name
+  "3rdParty": supplier
+  "Ref Num State": state
+  "Ref Num Country": country
+  "RTS": game_release_date
+  "Total": total_units
+  "Machine Sales, Net": machine_sales_net
+  "Total Machine Sales Gross": total_machine_sales_gross
+  "Total Machine Discounts": total_machine_discounts
+
+date_cols:
+  - yearmonth
+  - game_release_date
+
+numeric_cols:
+  - total_units
+  - machine_sales_net
+  - total_machine_sales_gross
+  - total_machine_discounts
+
+string_cols:
+  - supplier
+  - game_name
+  - slot_cabinet_name
+  - state
+  - country
+
+missing_tokens:
+  - "-"
+  - "--"
+  - ""
+  - " "
+  - "N/A"
+  - "n/a"
+  - "NULL"
+  - "null"
+  - "(Blank)"
+  - "#"
+  - "unknown"
+  - "other"
+  - "Not Provided"
+
+typo_maps:
+  supplier:
+    everi holdings: everi
+
+complementary_columns: {}
+drop_complementary_fallbacks: false
+
+supplier_columns:
+  - supplier
+  - parent_supplier
+  - manufacturer
+
+supplier_map:
+  scientific games: light & wonder
+  sg gaming: light & wonder
+  light and wonder: light & wonder
+  light&wonder: light & wonder
+  aristocrat gaming: aristocrat
+  international game technology: igt
+  igt gaming: igt
+  konami gaming: konami
+  ags gaming: ags
+  american gaming systems: ags
+  everi gaming: everi
+  everi holdings: everi
+
+ownership_mapping:
+  input_col: own_status
+  output_col: own_status
+  owned_exact:
+    - owned
+    - own
+    - y
+    - yes
+    - true
+  leased_exact:
+    - leased
+    - lease
+    - n
+    - no
+    - false
+    - not owned
+  owned_contains:
+    - own
+  leased_contains:
+    - lease
+    - "%"
+    - daily
+    - per day
+    - net win
+    - cap
+
+ownership_status_filter:
+  enabled: false
+  column: own_status
+  case_sensitive: false
+  values:
+    - owned
+
+cabinet_cleaning:
+  enabled: true
+  column: slot_cabinet_name
+  lower_case: true
+  artifact_map: {}
+
+cabinet_supplier_map:
+  peak curve 49: igt
+  peak slant 49: igt
+  dimension 49: konami
+  dimension 43x3: konami
+  dynasty sol: everi
+  cosmic: light & wonder
+
+supplier_consistency_validation:
+  enabled: false
+  strict: true
+  cabinet_col: slot_cabinet_name
+  game_supplier_col: supplier
+  parent_supplier_col: parent_supplier
+  report_dir: "Data/processed/reports/performance_supplier_validation"
+  external_minimum_share: 0.80
+  performance_minimum_share: 0.95
+  performance_minimum_rows: 20
+  external_sources: []
+
+majority_supplier_per_game:
+  enabled: false
+  game_col: game_name
+  cabinet_col: slot_cabinet_name
+  supplier_col: supplier
+
+hierarchical_imputation:
+  enabled: true
+  numeric_strategy: median
+  categorical_strategy: mode
+  add_missing_flags: false
+  cols:
+    - supplier
+    - game_release_date
+    - machine_sales_net
+  group_hierarchy:
+    - [game_name, slot_cabinet_name]
+    - [game_name]
+    - [slot_cabinet_name]
+    - [state]
+
+canonical_supplier:
+  corrected_sales_path:
+  original_sales_path:
+  output_path: "Data/processed/performance_canonical_suppliers.csv"
+  report_dir: "Data/processed/reports/performance_canonical_supplier"

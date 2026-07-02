@@ -29,3 +29,16 @@ Example Databricks script task parameters:
 ```text
 --config-env dev --config-dir config/game_attr_cleaning
 ```
+
+## Config-Driven Raw Cleaning
+
+Reusable raw-cleaning pipelines live under `src/` and are configured with YAML:
+
+```powershell
+python scripts\run_raw_cleaning.py --config config\raw_cleaning\performance.yml
+python scripts\run_generic_raw_cleaning.py --config config\raw_cleaning\generic.yml
+```
+
+The primary cleaner supports early filters, column normalization, missing/text/numeric/date cleanup, supplier and ownership standardization, cabinet/product cleanup, strict supplier consistency reports, majority supplier fallback, hierarchical imputation, CSV/parquet output, and JSON run logs.
+
+The generic cleaner is for secondary tables such as sales, mapping, game attributes, and ranked-title reference inputs.
