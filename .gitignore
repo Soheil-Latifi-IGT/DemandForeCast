@@ -42,7 +42,7 @@ figures/
 
 # Jupyter
 .ipynb_checkpoints/
-*.ipynb
+
 
 # OS trash
 .DS_Store
