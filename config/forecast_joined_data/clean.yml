@@ -1,0 +1,58 @@
+﻿performance_path: "Data/processed/performance_aggregated.csv"
+mapping_path: "Data/processed/mapping_clean.csv"
+game_attr_path: "Data/processed/game_attr_cleaned.csv"
+sales_path: "Data/processed/sales_clean.csv"
+output_path: "Data/processed/forecast_joined_clean.csv"
+sales_aggregated_output_path: "Data/processed/sales_theme_key_aggregated.csv"
+input_format: csv
+output_format: csv
+report_dir: "Data/processed/reports/forecast_joined_data"
+drop_internal_columns: true
+
+mapping_join:
+  performance_game_column: game_name
+  mapping_theme_column: theme_name
+  include_cabinet: true
+  performance_cabinet_column: slot_cabinet_name
+  mapping_cabinet_column: cabinet_desc
+  mapping_theme_key_column: theme_key
+  mapping_key_id_column: theme_key_id
+
+game_attr_join:
+  strategy: theme_name
+  how: left
+  deduplicate: true
+  game_attr_theme_column: theme_name
+  game_attr_key_column: theme_nk
+  include_source_company: false
+  performance_supplier_column: supplier
+  game_attr_source_company_column: source_company_cd
+
+sales_join:
+  sales_theme_key_column: theme_key
+  include_month: false
+  performance_month_column: yearmonth
+  sales_month_column: beginning_month_date
+  sum_columns:
+    - total
+    - total_machine_sales_gross
+    - total_machine_discounts
+    - machine_sales_net
+    - calculated_machine_net_revenue
+    - machine_cost_of_sales
+    - machine_gross_margin
+  first_columns:
+    - friendly_game_name
+    - business_segment
+    - product
+    - game_matrix
+    - copa_product_type
+    - copa_product_technology
+    - copa_product_style
+    - copa_product_series
+  nunique_columns:
+    - beginning_month_date
+    - sales_order_number
+    - customer_number
+    - reference_number
+

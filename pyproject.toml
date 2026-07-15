@@ -13,6 +13,8 @@ dependencies = [
   "pandas",
   "pyarrow",
   "pyyaml",
+  "scipy",
+  "matplotlib",
 ]
 
 [project.optional-dependencies]
@@ -27,3 +29,4 @@ packages = ["src", "src.data", "src.pipelines"]
 pythonpath = ["."]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+
