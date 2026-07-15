@@ -1,0 +1,150 @@
+source:
+  table: development_011_bronze_core.external_data.eilers_landbased_performance_raw
+  filters:
+    Region_Name: "U.S. & Canada"
+    Game_Classification: "CLASS 3"
+
+output:
+  table: development_011_silver_core.external_data.eilers_landbased_performance_clean
+  format: delta
+  mode: overwrite
+  overwrite_schema: true
+
+columns:
+  rename_map: {}
+  standardize: true
+  lower_case: true
+
+cleaning:
+  date_cols:
+    - yearmonth
+    - game_release_date
+    - cabinet_release_date
+  date_format:
+  missing_tokens:
+    - "-"
+    - "--"
+    - ""
+    - " "
+    - other
+    - unknown
+    - "N/A"
+    - "n/a"
+    - "NULL"
+    - "null"
+    - "(Blank)"
+    - "#"
+    - "Not Provided"
+  numeric_cols:
+    - game_denom
+    - avg_days_terminal
+    - avg_days_game_theme
+    - no_of_slots
+    - avg_coin_in_index_vs_house
+    - avg_coin_in_index_vs_zone
+    - total_avg_theo_net_win_index_vs_house
+    - total_avg_theo_net_win_index_vs_zone
+    - total_avg_coin_in_index_vs_house
+    - total_avg_coin_in_index_vs_zone
+    - avg_average_bet
+    - casinos
+    - avg_games_played_index
+    - theo_win_vs_house
+    - theo_win_vs_zone
+    - average_bet_index_same_denom
+    - average_bet_index_same_type_same_denom
+    - coin_in_vs_house_same_type
+    - theo_win_vs_house_same_type_same_denom
+    - utilization_index_same_type_same_denom
+    - no_of_casinos
+    - avg_theo_net_win_index_vs_house
+    - avg_theo_net_win_index_vs_zone
+    - casino_count
+    - avg_state_casino_count
+  string_cols:
+    - supplier
+    - parent_supplier
+    - game_name
+    - slot_cabinet_name
+    - state
+  lower_case: true
+  typo_maps: {}
+
+complementary_columns:
+  casinos:
+    - casino_count
+drop_complementary_fallbacks: false
+
+supplier:
+  column: supplier
+  lower_case: true
+  verbose: true
+  map:
+    lightning gaming: light & wonder
+    scientific games: light & wonder
+    sg gaming: light & wonder
+    sgi: light & wonder
+    merkur: merkur gaming
+    merkur-gaming: merkur gaming
+    tcsjohnhuxley: tcs john huxley
+    bluberi gaming: bluberi
+    light and wonder: light & wonder
+    light&wonder: light & wonder
+    l&w: light & wonder
+    aristocrat gaming: aristocrat
+    aristocrat technologies: aristocrat
+    igt gaming: igt
+    international game technology: igt
+    itt: igt
+    konami gaming: konami
+    ags gaming: ags
+    american gaming systems: ags
+    incredible tech: incredible technologies
+    everi gaming: everi
+    gaming arts llc: gaming arts
+    euro game technology: euro games technology
+    apex: apex gaming
+    inspired gaming: inspired
+    rocket gaming: rocket gaming systems
+    playsynergy: play synergy
+    synergyblue: synergy blue
+    winsystems: win systems
+    interblock gaming: interblock
+    alfastreet gaming: alfastreet
+    spintec gaming: spintec
+    fbm gaming: fbm
+    aruze gaming: aruze
+    sega sammy creation: sega sammy
+
+ownership_mapping:
+  input_col: own_status
+  output_col: own_status
+  owned_exact:
+    - owned
+    - own
+    - o
+    - "y"
+    - "yes"
+    - "true"
+  leased_exact:
+    - leased
+    - lease
+    - "n"
+    - "no"
+    - "false"
+    - not owned
+  owned_contains:
+    - own
+  leased_contains:
+    - lease
+    - "%"
+    - ci-
+    - daily
+    - per day
+    - net win
+    - cap
+
+diagnostics:
+  cache_output: true
+  missing_summary: true
+  ownership_counts_column: own_status
