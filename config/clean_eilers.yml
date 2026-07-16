@@ -1,14 +1,34 @@
 source:
   table: development_011_bronze_core.external_data.eilers_landbased_performance_raw
   filters:
-    Region_Name: "U.S. & Canada"
-    Game_Classification: "CLASS 3"
+    #Region_Name: "U.S. & Canada"
+    #Game_Classification: "CLASS 3"
 
 output:
   table: development_011_silver_core.external_data.eilers_landbased_performance_clean
   format: delta
   mode: overwrite
   overwrite_schema: true
+
+incremental:
+  enabled: true
+  watermark_column: databricks_date_created
+  watermark_table: development_011_silver_core.external_data.eilers_landbased_performance_clean_watermark
+  job_name: eilers_landbased_performance_clean
+  # Rows are matched with these cleaned column names.
+  key_columns:
+    - region_name
+    - game_classification
+    - yearmonth
+    - supplier
+    - parent_supplier
+    - game_name
+    - slot_cabinet_name
+    - state
+    - game_denom
+    - own_status
+  # Leave empty to update every non-key column on matched rows.
+  update_columns: []
 
 columns:
   rename_map: {}
