@@ -5,7 +5,7 @@ source:
     #Game_Classification: "CLASS 3"
 
 output:
-  table: development_011_silver_core.external_data.eilers_landbased_performance_clean
+  table: development_042_silver_sandbox.demand_forecast.eilers_landbased_performance_clean_sl
   format: delta
   mode: overwrite
   overwrite_schema: true
@@ -13,15 +13,12 @@ output:
 incremental:
   enabled: true
   watermark_column: databricks_date_created
-  watermark_table: development_011_silver_core.external_data.eilers_landbased_performance_clean_watermark
+  watermark_table: development_042_silver_sandbox.demand_forecast.eilers_landbased_performance_clean_watermark
   job_name: eilers_landbased_performance_clean
   # Rows are matched with these cleaned column names.
   key_columns:
     - region_name
-    - game_classification
     - yearmonth
-    - supplier
-    - parent_supplier
     - game_name
     - slot_cabinet_name
     - state
@@ -165,6 +162,6 @@ ownership_mapping:
     - cap
 
 diagnostics:
-  cache_output: true
+  cache_output: false
   missing_summary: true
   ownership_counts_column: own_status
