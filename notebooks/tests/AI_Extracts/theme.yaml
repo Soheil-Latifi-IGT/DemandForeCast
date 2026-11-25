@@ -1,0 +1,253 @@
+# Categories assessed in every overview. The id determines the output column name.
+themes:
+  - id: 2_for_1_theme
+    name: 2 For 1 Theme
+    description: A product explicitly presented as a two-for-one game, such as two paylines for one credit.
+  - id: abstract_and_colors
+    name: Abstract And Colors
+    description: Abstract shapes or named colors organize the artwork, symbols or game identity.
+  - id: african_safari_wildlife
+    name: African Safari Wildlife
+    description: An African safari setting, savanna wildlife or an explicitly identified African wildlife
+      motif.
+  - id: ancient_civilizations
+    name: Ancient Civilizations
+    description: An ancient historical society, its cities, temples or artifacts form an identifiable setting.
+  - id: ancient_egypt
+    name: Ancient Egypt
+    description: Pharaohs, Egyptian gods, pyramids, hieroglyphs or an explicitly ancient Egyptian setting.
+  - id: ancient_greece_and_rome
+    name: Ancient Greece And Rome
+    description: Characters, architecture or stories identifiable as ancient Greek or Roman.
+  - id: animals_and_wildlife
+    name: Animals And Wildlife
+    description: Animals are a recognizable subject of the game art or narrative. Specific animal categories
+      may also apply.
+  - id: art_and_literature
+    name: Art And Literature
+    description: The game draws on a recognizable literary work, artist, artistic movement or making art.
+  - id: asian_culture
+    name: Asian Culture
+    description: Identifiable Asian cultural traditions, symbols, settings or stories are depicted as a motif.
+  - id: bingo
+    name: Bingo
+    description: Bingo, bingo cards or a named bingo game is an explicit game motif or offered game.
+  - id: buffalo
+    name: Buffalo
+    description: Buffalo or bison are identifiable subjects in the artwork, title or narrative.
+  - id: cats
+    name: Cats
+    description: Domestic cats or identifiable wild cats are featured subjects.
+  - id: classic_slots_and_symbols
+    name: Classic Slots And Symbols
+    description: Traditional slot imagery such as BARs, bells, cherries or lucky sevens is part of the game's
+      identity.
+  - id: culture_and_people
+    name: Culture And People
+    description: A human community, cultural activity, tradition or historical group is an identifiable subject.
+  - id: dice_game
+    name: Dice Game
+    description: Dice or a dice-based game are a named or recurring subject.
+  - id: dogs
+    name: Dogs
+    description: Dogs or dog-related activities are featured subjects.
+  - id: fantasy_and_magic
+    name: Fantasy And Magic
+    description: Magic, supernatural powers, fantastical beings or enchanted worlds are identifiable motifs.
+  - id: film_noir
+    name: Film Noir
+    description: An explicit film noir or neo-noir reference, or a combination of recognizable noir story
+      and visual cues, such as a hard-boiled investigator in a shadowy city crime story. Dark colors, a lone
+      detective, or black-and-white artwork alone are insufficient. A specific movie license is optional.
+  - id: flowers_and_garden
+    name: Flowers And Garden
+    description: Flowers, gardens, horticulture or a cultivated garden setting is featured.
+  - id: food_and_drink
+    name: Food And Drink
+    description: Food, drinks, cooking, dining or a bar setting is featured.
+  - id: gem
+    name: Gem
+    description: Jewels, gemstones or gem collecting are recurring visual or named motifs.
+  - id: holidays_and_festivals
+    name: Holidays And Festivals
+    description: A recognizable holiday, festival or seasonal celebration is featured.
+  - id: home_and_lifestyle
+    name: Home And Lifestyle
+    description: Homes, domestic furnishings, everyday home life or a lifestyle activity is featured.
+  - id: jackpot
+    name: Jackpot
+    description: The prospect of winning a jackpot is a recognizable motif in the game's branding, artwork
+      or narrative. A jackpot listed only in the rules is insufficient.
+  - id: jackpot_theme
+    name: Jackpot Theme
+    description: Jackpots are a central theme of the game as presented in the title, graphics or overview.
+      A progressive payout rule alone is insufficient.
+  - id: luck_and_zodiac
+    name: Luck And Zodiac
+    description: Good-luck symbols, zodiac signs, astrology or lucky charms form a motif.
+  - id: marine_and_ocean
+    name: Marine And Ocean
+    description: Ocean, underwater environments, marine creatures or aquatic exploration form a motif.
+  - id: multiplier
+    name: Multiplier
+    description: Multiplication factors are a prominent part of the branded identity or visual design.
+  - id: music_and_dance
+    name: Music And Dance
+    description: Performers, music, instruments, concerts or dancing form an identifiable motif.
+  - id: mystery_and_detective
+    name: Mystery And Detective
+    description: Detectives, investigations, clues, crime-solving or a mystery narrative are featured.
+  - id: mythology
+    name: Mythology
+    description: Identifiable mythic traditions, deities or legendary stories are featured.
+  - id: nature_and_seasons
+    name: Nature And Seasons
+    description: Natural landscapes, weather, seasons or wilderness scenery form a motif.
+  - id: other_theme
+    name: Other Theme
+    description: An evidenced, identifiable motif falls outside the rest of the theme catalog. Name it in
+      the rationale.
+  - id: piggy_theme
+    name: Piggy Theme
+    description: Pigs or piggy banks appear as a recognizable motif.
+  - id: pirates_and_nautical
+    name: Pirates And Nautical
+    description: Pirates, sailors, ships, seafaring or maritime adventure form a motif.
+  - id: poker_and_cards
+    name: Poker and Cards
+    description: Poker, video poker and its variants, playing-card games, casino table games, or keno are
+      featured or offered in the game menu. Examples include Jacks or Better, Bonus Poker, Double Bonus Poker,
+      Triple Double Bonus Poker, blackjack, baccarat and roulette. Score the family once per game. A menu
+      listing may be incidental. An ordinary A, K, Q or J reel symbol alone is insufficient.
+  - id: pop_culture
+    name: Pop Culture
+    description: A recognizable television, film, music, celebrity, comic or entertainment property is part
+      of the game identity.
+  - id: romance
+    name: Romance
+    description: A love story, courtship or a named romantic pair is featured.
+  - id: royalty_and_romance
+    name: Royalty And Romance
+    description: Royal characters, royal courts or a courtly romance are featured.
+  - id: science_fiction
+    name: Science Fiction
+    description: Futuristic or speculative technology, space adventures, aliens or science fiction worlds
+      are featured.
+  - id: sports
+    name: Sports
+    description: An identifiable sport, sporting event, athlete or competition is featured.
+  - id: technology_and_industry
+    name: Technology And Industry
+    description: Machines, computing, manufacturing, trades or industrial workplaces form a motif.
+  - id: toys_and_cartoon_worlds
+    name: Toys And Cartoon Worlds
+    description: Toys, an animated fictional world or cartoon characters are the subject. Illustrated rendering
+      alone is insufficient.
+  - id: travel_and_exploration
+    name: Travel And Exploration
+    description: Travel, expeditions, discovery or adventure through destinations is featured.
+  - id: treasure_and_wealth
+    name: Treasure And Wealth
+    description: Treasure, riches, valuables or a quest for wealth forms part of the game identity.
+  - id: vehicles_and_aviation
+    name: Vehicles And Aviation
+    description: Cars, trains, aircraft or other vehicles are featured subjects.
+  - id: venetian
+    name: Venetian
+    description: Venice, canals, gondolas, Venetian masks or an identifiable Venetian setting is featured.
+  - id: western_and_frontier
+    name: Western And Frontier
+    description: Cowboys, ranches, frontier settlements or the American West are featured.
+
+mechanics:
+  - id: card_table_game_actions
+    name: Card Table Game Actions
+    description: A rule for dealing, drawing, discarding, holding cards, resolving hands or making table-game
+      decisions.
+    exclude: A decorative card symbol alone.
+  - id: coin_credit_collection
+    name: Coin Credit Collection
+    description: Symbols or credits are collected, accumulated or banked toward a feature or award.
+    exclude: Coins as decoration, a credit balance, or a paytable in credits.
+  - id: expanding_transforming_reels
+    name: Expanding Transforming Reels
+    description: Reel height, reel area or an entire reel changes during play.
+    exclude: A symbol changes on one position with no reel-level change.
+  - id: free_spins_free_games
+    name: Free Spins Free Games
+    description: Play awards one or more additional spins or games without a new base wager.
+    exclude: A respin alone unless it is also described as free games.
+  - id: gamble_double_up
+    name: Gamble Double Up
+    description: A player may risk an existing award in a gamble or double-up feature.
+    exclude: A multiplier that applies automatically.
+  - id: hold_spin_lock_collect
+    name: Hold Spin Lock Collect
+    description: Positions lock or hold while other positions spin or respin to complete a collection or earn
+      an award.
+    exclude: Holding cards for a draw or simply collecting a coin.
+  - id: interactive_bonus_games
+    name: Interactive Bonus Games
+    description: The player takes an action inside a bonus that changes or reveals a game outcome.
+    exclude: Starting a bonus or watching its animation.
+  - id: multipliers
+    name: Multipliers
+    description: A numeric factor multiplies an award, win or named game quantity.
+    exclude: A wager denomination, paytable number or decorative X.
+  - id: mystery_random_awards
+    name: Mystery Random Awards
+    description: A distinct mystery feature randomly grants or reveals an award, modifier or feature.
+    exclude: The ordinary randomness of a spin.
+  - id: nudges_reel_stops
+    name: Nudges Reel Stops
+    description: A reel nudges, shifts, steps or re-stops to change displayed positions.
+    exclude: A normal reel stop or a whole new independent spin.
+  - id: other_mechanic
+    name: Other Mechanic
+    description: A specific evidenced gameplay rule falls outside every other mechanic in the catalog. Name
+      the rule in the rationale.
+    exclude: Uncertainty, missing information or a synonym of an existing mechanic.
+  - id: pick_choice_bonus
+    name: Pick Choice Bonus
+    description: A bonus asks the player to pick an object, path or option to reveal an award or determine
+      play.
+    exclude: Selecting a denomination, paytable or base-game title.
+  - id: progressive_jackpot
+    name: Progressive Jackpot
+    description: A jackpot is identified as progressive, accumulates contributions or grows until awarded.
+    exclude: A fixed jackpot or a personal collection meter.
+  - id: respins_retriggers
+    name: Respins Retriggers
+    description: The game awards a respin of some or all positions or lets a feature retrigger.
+    exclude: Initial entry to a free-spin bonus alone.
+  - id: scatter_symbol_triggers
+    name: Scatter Symbol Triggers
+    description: A scatter symbol or scatter combination triggers an award or feature by scatter rules.
+    exclude: A regular symbol on a payline.
+  - id: side_bet_wagering
+    name: Side Bet Wagering
+    description: An optional additional wager activates a separate award, rule or side bet.
+    exclude: Choosing a regular bet level or denomination.
+  - id: ways_paylines_win_patterns
+    name: Ways Paylines Win Patterns
+    description: Wins use explicitly described paylines, ways, clusters or other matching patterns.
+    exclude: A screenshot of reels without a win rule.
+  - id: wheel_bonus
+    name: Wheel Bonus
+    description: A physical or virtual wheel spins or selects a segment to determine a bonus outcome.
+    exclude: A decorative wheel or reel strip.
+  - id: wild_symbols_and_wild_reels
+    name: Wild Symbols And Wild Reels
+    description: A wild symbol substitutes, becomes wild or makes a reel wild under a gameplay rule.
+    exclude: The word wild in a game title or an animal theme.
+
+# These eight source CSV columns are retained for historical compatibility.
+retired_theme_ids:
+  - bonus_poker
+  - cards_and_table_games
+  - double_bonus_poker
+  - double_double_bonus_poker
+  - jacks_or_better_poker
+  - keno
+  - triple_bonus_poker
+  - triple_double_bonus_poker

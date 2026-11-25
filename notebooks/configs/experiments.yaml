@@ -1,0 +1,363 @@
+# Put this file in configs/ beside notebook 05, or set CONFIG_PATH in cell 2.
+# Edit this file to add experiments. No widgets or notebook settings override it.
+schema_version: 1
+
+data:
+  revision: baseline_v1
+  ai_attributes_table: development_042_silver_sandbox.demand_forecast.game_attr_ai_silver
+  # null: resolve latest ONCE for this revision, then reuse its saved version.
+  # Change revision explicitly to start a new source snapshot/campaign.
+  source_version: null
+  # Only used for targets that have no release date. Use YYYY-MM-DD when needed.
+  # No date means the target is retained with empty neighbors and an explicit reason.
+  prediction_as_of_date: null
+
+outputs:
+  like_games_table: development_042_silver_sandbox.demand_forecast.like_games_ai_attr
+  runs_table: development_042_silver_sandbox.demand_forecast.similarity_runs
+  attempts_table: development_042_silver_sandbox.demand_forecast.similarity_run_attempts
+
+tracking:
+  experiment_path: /Shared/AI_Feature_Extraction_Similarity
+
+monitoring:
+  history_rows: 30
+
+similarity_defaults:
+  raw_weights:
+    mechanics: 2.0
+    themes: 2.0
+    reels: 1.0
+    persistence: 2.0
+    ways: 1.0
+    months_since_release: 0.0
+  distance_method: cosine
+  parent_game_process: p3_include_parent
+  neighbor_limits:
+    sales: 5
+    rental: 5
+    eilers: 5
+  neighbor_released_after: '2021-06-01'
+  minimum_age_gap_months: 12
+
+experiments:
+# Each entry is one forecast run. Use enabled to choose which experiments to run.
+# rank_weights are ordered by monthly demand, highest first, separately for sales and rentals.
+# The last weight also applies to additional neighbors. Each entry can be edited independently.
+
+  # p1_parent_games_only, equal weights
+  - name: p1_m1_t1_p1_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p1_m1_t1_p1_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p1_m1_t1_p1_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p1_parent_games_only, content boost
+  - name: p1_m2_t2_p2_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p1_m2_t2_p2_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p1_m2_t2_p2_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p1_parent_games_only, theme
+  - name: p1_m3_t3_p2_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p1_m3_t3_p2_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p1_m3_t3_p2_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p1_parent_games_only
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p2_current, equal weights
+  - name: p2_m1_t1_p1_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p2_m1_t1_p1_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p2_m1_t1_p1_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p2_current, content boost
+  - name: p2_m2_t2_p2_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p2_m2_t2_p2_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p2_m2_t2_p2_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p2_current, theme
+  - name: p2_m3_t3_p2_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p2_m3_t3_p2_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p2_m3_t3_p2_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p2_current
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p3_include_parent, equal weights
+  - name: p3_m1_t1_p1_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p3_m1_t1_p1_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p3_m1_t1_p1_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 1.0, themes: 1.0, persistence: 1.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p3_include_parent, content boost
+  - name: p3_m2_t2_p2_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p3_m2_t2_p2_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p3_m2_t2_p2_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 2.0, themes: 2.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+  # p3_include_parent, theme
+  - name: p3_m3_t3_p2_n5__equal
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p3_m3_t3_p2_n5__top1_1p5x
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.5, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: false
+  - name: p3_m3_t3_p2_n5__equal_bias_corrected
+    enabled: true
+    overrides:
+      parent_game_process: p3_include_parent
+      raw_weights: {mechanics: 3.0, themes: 3.0, persistence: 2.0}
+    forecast:
+      rank_weights: [1.0, 1.0, 1.0, 1.0, 1.0]
+      train_bias_correction: true
+
+# Shared settings for all named forecasts.
+forecast:
+  # Pins Sales/Rental/Eilers snapshots once, across later batches of experiments.
+  # Change this revision explicitly when forecasting from refreshed source data.
+  data_revision: baseline_v1
+  sources:
+    sales: development_042_silver_sandbox.demand_forecast.sales_silver_comp
+    lease: development_042_silver_sandbox.demand_forecast.lease_units_bronz
+    performance: development_042_silver_sandbox.demand_forecast.eilers_group_historical_time_series
+  source_versions:
+    sales: null
+    lease: null
+    performance: null
+  settings:
+    distance_cutoff: 0.40
+    minimum_neighbors: 3
+    # Notebook 05 counts distinct observed months before the target prediction month.
+    sales_min_observed_months: 6
+    rental_min_observed_months: 9
+    horizon_months: 12  # Forecast length for every channel.
+    slot_counts: []  # Any positive no_of_slots.
+    lease_value_column: source_row_count
+    lease_metric_name: monthly_rental_records
+    lease_curve_label: Monthly rental records
+    performance_metrics:
+      - avg_coin_in_index_vs_house
+      - avg_theo_net_win_index_vs_house
+  outputs:
+    demand: development_042_silver_sandbox.demand_forecast.demand_forecast_results
+    performance: development_042_silver_sandbox.demand_forecast.performance_forecast_results
+    neighbors: development_042_silver_sandbox.demand_forecast.forecast_neighbors_kept
+    runs: development_042_silver_sandbox.demand_forecast.forecast_runs
+    attempts: development_042_silver_sandbox.demand_forecast.forecast_run_attempts
+  tracking:
+    experiment_path: /Shared/AI_Feature_Extraction_Forecasts
+  selection:
+    similarity_experiment_ids: []  # Optionally restrict enabled experiments to these saved 05 IDs.
+  monitoring:
+    history_rows: 30
+
+# Notebook 07: actuals/cohorts refresh independently of saved predictions.
+evaluation:
+  data_revision: labels_v1
+  sources:
+    sales: development_042_silver_sandbox.demand_forecast.sales_silver_comp
+    lease: development_042_silver_sandbox.demand_forecast.lease_units_bronz
+    performance: development_042_silver_sandbox.demand_forecast.eilers_group_historical_time_series
+    mappings: development_042_silver_sandbox.demand_forecast.game_attr_ai_silver
+  source_versions:
+    sales: null
+    lease: null
+    performance: null
+    mappings: null
+  settings:
+    evaluation_months: 12
+    minimum_observed_months: 2
+    bracket_month: 12
+    validation_fraction: 0.20
+    test_fraction: 0.20
+    exclude_pre_release_curves: true
+    exclude_cumulative_imputed_history: false
+    performance_metrics:
+      - avg_coin_in_index_vs_house
+      - avg_theo_net_win_index_vs_house
+  outputs:
+    cohorts: development_042_silver_sandbox.demand_forecast.forecast_evaluation_cohorts
+    cohort_runs: development_042_silver_sandbox.demand_forecast.forecast_evaluation_cohort_runs
+    splits: development_042_silver_sandbox.demand_forecast.forecast_train_test_split
+    eligibility: development_042_silver_sandbox.demand_forecast.forecast_evaluation_eligibility
+    metrics: development_042_silver_sandbox.demand_forecast.forecast_error_metrics
+    selected: development_042_silver_sandbox.demand_forecast.forecast_selected_configurations
+    selection_runs: development_042_silver_sandbox.demand_forecast.forecast_selection_runs
+    runs: development_042_silver_sandbox.demand_forecast.forecast_evaluation_runs
+    attempts: development_042_silver_sandbox.demand_forecast.forecast_evaluation_attempts
+    actuals_snapshots: development_042_silver_sandbox.demand_forecast.forecast_actuals_snapshots
+    batches: development_042_silver_sandbox.demand_forecast.forecast_evaluation_batches
+  tracking:
+    experiment_path: /Shared/AI_Feature_Extraction_Evaluation
+  selection:
+    forecast_run_ids: []  # Evaluate completed runs matching the enabled named experiments.
+  monitoring:
+    history_rows: 30
